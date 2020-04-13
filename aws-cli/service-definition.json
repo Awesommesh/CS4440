@@ -1,5 +1,5 @@
 {
-  "serviceName": "ImageNET-Service",
+  "serviceName": "Imagenet-Service",
   "cluster": "ImageNET-Cluster",
   "launchType": "FARGATE",
   "deploymentConfiguration": {
