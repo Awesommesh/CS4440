@@ -24,7 +24,7 @@
     {
       "containerName": "ImageNET-Service",
       "containerPort": 8080,
-      "targetGroupArn": "arn:aws:elasticloadbalancing:us-east-2:711742431666:loadbalancer/net/imagenet-nlb/b4fcd380459e9b61"
+      "targetGroupArn": "arn:aws:elasticloadbalancing:us-east-2:711742431666:targetgroup/ImageNET-TargetGroup/db8a67e5fbc6bc2f"
     }
   ]
 }
