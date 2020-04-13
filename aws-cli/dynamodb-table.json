@@ -11,7 +11,7 @@
     },
     {
       "AttributeName": "tags",
-      "AttributeType": "SS"
+      "AttributeType": "S"
     },
     {
       "AttributeName": "url",
