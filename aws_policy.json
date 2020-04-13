@@ -1,6 +1,6 @@
 {
   "Id": "CS4440_ImageNET_Search",
-  "Version": "2020-4-13",
+  "Version": "2020-04-13",
   "Statement": [
     {
       "Sid": "PublicReadForGetBucketObjects",
