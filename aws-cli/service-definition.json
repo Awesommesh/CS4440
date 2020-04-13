@@ -1,0 +1,30 @@
+{
+  "serviceName": "ImageNET-Service",
+  "cluster": "ImageNET-Cluster",
+  "launchType": "FARGATE",
+  "deploymentConfiguration": {
+    "maximumPercent": 200,
+    "minimumHealthyPercent": 0
+  },
+  "desiredCount": 1,
+  "networkConfiguration": {
+    "awsvpcConfiguration": {
+      "assignPublicIp": "DISABLED",
+      "securityGroups": [
+        "sg-0c840370a463b9305"
+      ],
+      "subnets": [
+        "subnet-0f89a0f7b4f6b9bbb",
+        "subnet-035f5b17216f1299c"
+      ]
+    }
+  },
+  "taskDefinition": "imagenetservice",
+  "loadBalancers": [
+    {
+      "containerName": "ImageNET-Service",
+      "containerPort": 8080,
+      "targetGroupArn": "arn:aws:elasticloadbalancing:us-east-2:711742431666:loadbalancer/net/imagenet-nlb/b4fcd380459e9b61"
+    }
+  ]
+}
