@@ -370,7 +370,7 @@ Resources:
   ImageNETServiceCodeBuildServiceRole:
     Type: AWS::IAM::Role
     Properties:
-      RoleName:ImageNETServiceCodeBuildServiceRole
+      RoleName: ImageNETServiceCodeBuildServiceRole
       AssumeRolePolicyDocument:
         Version: "2012-10-17"
         Statement:
