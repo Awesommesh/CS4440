@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, json, Response, request
 from flask_cors import CORS
-
+import ImageNETTableClient
 # A very basic API created using Flask that has two possible routes for requests.
 
 app = Flask(__name__)
@@ -19,15 +19,23 @@ def healthCheckResponse():
 # read from the the filesystem, and directly used as the service response.
 @app.route("/imagenet")
 def getImageNET():
-    # read the mysfits JSON from the listed file.
-    response = Response(open("imagenet-response.json").read())
+    filterCategory = request.args.get('filter')
+    if filterCategory:
+        filterValue = request.args.get('value')
+        queryParam = {
+            'filter': filterCategory,
+            'value': filterValue
+        }
+        # a filter query string was found, query only for those mysfits.
+        serviceResponse = ImageNETTableClient.queryImageNET(queryParam)
+    else:
+        # no filter was found, retrieve all mysfits.
+        serviceResponse = ImageNETTableClient.getAllImages()
 
-    # set the Content-Type header so that the browser is aware that the response
-    # is formatted as JSON and our frontend JavaScript code is able to
-    # appropriately parse the response.
-    response.headers["Content-Type"]= "application/json"
+    flaskResponse = Response(serviceResponse)
+    flaskResponse.headers["Content-Type"] = "application/json"
 
-    return response
+    return flaskResponse
 
 # Run the service on the local server it has been deployed to,
 # listening on port 8080.
