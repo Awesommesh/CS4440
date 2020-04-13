@@ -1,0 +1,23 @@
+{
+    "TargetGroups": [
+        {
+            "HealthCheckPath": "/", 
+            "HealthCheckIntervalSeconds": 10, 
+            "VpcId": "vpc-0ac7d5f39b171cab1", 
+            "Protocol": "TCP", 
+            "HealthCheckTimeoutSeconds": 6, 
+            "TargetType": "ip", 
+            "HealthCheckProtocol": "HTTP", 
+            "Matcher": {
+                "HttpCode": "200-399"
+            }, 
+            "UnhealthyThresholdCount": 3, 
+            "HealthyThresholdCount": 3, 
+            "TargetGroupArn": "arn:aws:elasticloadbalancing:us-east-2:711742431666:targetgroup/ImageNET-TargetGroup/db8a67e5fbc6bc2f", 
+            "HealthCheckEnabled": true, 
+            "HealthCheckPort": "traffic-port", 
+            "Port": 8080, 
+            "TargetGroupName": "ImageNET-TargetGroup"
+        }
+    ]
+}
