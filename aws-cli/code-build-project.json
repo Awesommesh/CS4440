@@ -22,6 +22,6 @@
   "serviceRole": "arn:aws:iam::711742431666:role/ImageNETServiceCodeBuildServiceRole",
   "source": {
     "type": "CODECOMMIT",
-    "location": "https://git-codecommit.REPLACE_ME_REGION.amazonaws.com/v1/repos/MythicalMysfitsService-Repository"
+    "location": "https://git-codecommit.us-east-2.amazonaws.com/v1/repos/ImageNETService-Repository"
   }
 }
