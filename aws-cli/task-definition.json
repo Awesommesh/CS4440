@@ -1,0 +1,32 @@
+{
+  "family": "imagenetservice",
+  "cpu": "256",
+  "memory": "512",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "executionRoleArn": "arn:aws:iam::711742431666:role/ImageNETCoreStack-EcsServiceRole-W63LGPK04EYT",
+  "taskRoleArn": "arn:aws:iam::711742431666:role/ImageNETCoreStack-ECSTaskRole-15REZ9NAXW1P3",
+  "containerDefinitions": [
+    {
+      "name": "ImageNET-Service",
+      "image": "711742431666.dkr.ecr.us-east-2.amazonaws.com/imagenet/service:latest",
+      "portMappings": [
+        {
+          "containerPort": 8080,
+          "protocol": "http"
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "imagenet-logs",
+          "awslogs-region": "us-east-2",
+          "awslogs-stream-prefix": "awslogs-imagenet-service"
+        }
+      },
+      "essential": true
+    }
+  ]
+}
