@@ -1,6 +1,6 @@
 {
-  "serviceName": "Imagenet-Service",
-  "cluster": "ImageNET-Cluster",
+  "serviceName": "ImageNET-Service",
+  "cluster": "Imagenet-Cluster",
   "launchType": "FARGATE",
   "deploymentConfiguration": {
     "maximumPercent": 200,
