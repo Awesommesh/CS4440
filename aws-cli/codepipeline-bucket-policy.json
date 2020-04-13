@@ -15,8 +15,8 @@
         "s3:GetBucketVersioning"
       ],
       "Resource": [
-        "arn:aws:s3:::codepipelineimagenet/*",
-        "arn:aws:s3:::codepipelineimagenet"
+        "arn:aws:s3:::imagenetcodepipeline/*",
+        "arn:aws:s3:::imagenetcodepipeline"
       ]
     },
     {
@@ -30,8 +30,8 @@
       },
       "Action": "s3:PutObject",
       "Resource": [
-        "arn:aws:s3:::codepipelineimagenet/*",
-        "arn:aws:s3:::codepipelineimagenet"
+        "arn:aws:s3:::imagenetcodepipeline/*",
+        "arn:aws:s3:::imagenetcodepipeline"
       ]
     }
   ]
