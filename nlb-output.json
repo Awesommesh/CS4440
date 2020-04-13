@@ -1,0 +1,30 @@
+{
+    "LoadBalancers": [
+        {
+            "IpAddressType": "ipv4", 
+            "VpcId": "vpc-0ac7d5f39b171cab1", 
+            "LoadBalancerArn": "arn:aws:elasticloadbalancing:us-east-2:711742431666:loadbalancer/net/imagenet-nlb/b4fcd380459e9b61", 
+            "State": {
+                "Code": "provisioning"
+            }, 
+            "DNSName": "imagenet-nlb-b4fcd380459e9b61.elb.us-east-2.amazonaws.com", 
+            "LoadBalancerName": "imagenet-nlb", 
+            "CreatedTime": "2020-04-13T11:29:58.034Z", 
+            "Scheme": "internet-facing", 
+            "Type": "network", 
+            "CanonicalHostedZoneId": "ZLMOA37VPKANP", 
+            "AvailabilityZones": [
+                {
+                    "SubnetId": "subnet-05045601d017dfb22", 
+                    "LoadBalancerAddresses": [], 
+                    "ZoneName": "us-east-2a"
+                }, 
+                {
+                    "SubnetId": "subnet-0c3b935421e0e6c7f", 
+                    "LoadBalancerAddresses": [], 
+                    "ZoneName": "us-east-2b"
+                }
+            ]
+        }
+    ]
+}
