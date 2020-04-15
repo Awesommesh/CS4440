@@ -12,11 +12,6 @@ CORS(app)
 def healthCheckResponse():
     return jsonify({"message" : "Nothing here, used for health check. Try /imagenet instead."})
 
-# The main API resource that the next version of the Mythical Mysfits website
-# will utilize. It returns the data for all of the Mysfits to be displayed on
-# the website.  Because we do not yet have any persistent storage available for
-# our application, the mysfits are simply stored in a static JSON file. Which is
-# read from the the filesystem, and directly used as the service response.
 @app.route("/imagenet")
 def getImageNET():
     filterCategory = request.args.get('filter')
@@ -26,10 +21,10 @@ def getImageNET():
             'filter': filterCategory,
             'value': filterValue
         }
-        # a filter query string was found, query only for those mysfits.
+        # a filter query string was found, query only for those images.
         serviceResponse = ImageNETTableClient.queryImageNET(queryParam)
     else:
-        # no filter was found, retrieve all mysfits.
+        # no filter was found, retrieve all images.
         serviceResponse = ImageNETTableClient.getAllImages()
 
     flaskResponse = Response(serviceResponse)
