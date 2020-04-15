@@ -4,8 +4,18 @@ from nltk.corpus import wordnet
 import re 
 
 wnid = []
+
 local_wnid = []
 children_wnid = []
+
+
+def get_wnid(query):
+     get_local_wnid(query)
+     for id in local_wnid: 
+         get_children_wnid(id)
+     wnid = local_wnid + children_wnid
+     print (wnid)
+
 
 def get_local_wnid(query):
     #human readable query -> wnid
@@ -29,13 +39,11 @@ def get_children_wnid(wnid):
         children_wnid.append(id[1:10])
     del children_wnid[-1] #again, weird '' at end of list
 
+
 def main():
      query = input("Enter your search query: ")
-     get_local_wnid(query)
-     for id in local_wnid: 
-         get_children_wnid(id)
-     wnid = local_wnid + children_wnid
-     print (wnid)
+     get_wnid(query)
+
 
 if __name__ == "__main__":
     main()
