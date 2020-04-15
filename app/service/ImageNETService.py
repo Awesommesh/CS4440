@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, json, Response, request
 from flask_cors import CORS
-import ImageNETTableClient
+import imageNETTableClient
 # A very basic API created using Flask that has two possible routes for requests.
 
 app = Flask(__name__)
