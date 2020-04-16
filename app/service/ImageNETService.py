@@ -22,10 +22,10 @@ def getImageNET():
             'value': filterValue
         }
         # a filter query string was found, query only for those images.
-        serviceResponse = ImageNETTableClient.queryImageNET(queryParam)
+        serviceResponse = imageNETTableClient.queryImageNET(queryParam)
     else:
         # no filter was found, retrieve all images.
-        serviceResponse = ImageNETTableClient.getAllImages()
+        serviceResponse = imageNETTableClient.getAllImages()
 
     flaskResponse = Response(serviceResponse)
     flaskResponse.headers["Content-Type"] = "application/json"
