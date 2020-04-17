@@ -1,0 +1,91 @@
+{
+  "pipeline": {
+    "name": "ImageNETServiceCICDPipeline",
+    "roleArn": "arn:aws:iam::711742431666:role/ImageNETServiceCodePipelineServiceRole",
+    "stages": [
+      {
+        "name": "Source",
+        "actions": [
+          {
+            "inputArtifacts": [
+
+            ],
+            "name": "Source",
+            "actionTypeId": {
+              "category": "Source",
+              "owner": "AWS",
+              "version": "1",
+              "provider": "CodeCommit"
+            },
+            "outputArtifacts": [
+              {
+                "name": "ImageNETService-SourceArtifact"
+              }
+            ],
+            "configuration": {
+              "BranchName": "master",
+              "RepositoryName": "ImageNETService-Repository"
+            },
+            "runOrder": 1
+          }
+        ]
+      },
+      {
+        "name": "Build",
+        "actions": [
+          {
+            "name": "Build",
+            "actionTypeId": {
+              "category": "Build",
+              "owner": "AWS",
+              "version": "1",
+              "provider": "CodeBuild"
+            },
+            "outputArtifacts": [
+              {
+                "name": "ImageNETService-BuildArtifact"
+              }
+            ],
+            "inputArtifacts": [
+              {
+                "name": "ImageNETService-SourceArtifact"
+              }
+            ],
+            "configuration": {
+              "ProjectName": "ImageNETServiceCodeBuildProject"
+            },
+            "runOrder": 1
+          }
+        ]
+      },
+      {
+        "name": "Deploy",
+        "actions": [
+          {
+            "name": "Deploy",
+            "actionTypeId": {
+              "category": "Deploy",
+              "owner": "AWS",
+              "version": "1",
+              "provider": "ECS"
+            },
+            "inputArtifacts": [
+              {
+                "name": "ImageNETService-BuildArtifact"
+              }
+            ],
+            "configuration": {
+              "ClusterName": "Imagenet-Cluster",
+              "ServiceName": "ImageNET-Service",
+              "FileName": "imagedefinitions.json"
+            }
+          }
+        ]
+      }
+    ],
+    "artifactStore": {
+      "type": "S3",
+      "location": "imagenetcodepipeline"
+    }
+  }
+}

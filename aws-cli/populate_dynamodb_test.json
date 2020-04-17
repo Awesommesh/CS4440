@@ -1,0 +1,19 @@
+{
+      "ImageNETTable" : [
+         {
+            "PutRequest": {
+               "Item": {
+                  "wnid" : {
+                     "S": "4e53920c-505a-4a90-a694-b9300791f0ae"
+                  },
+                  "tags" : {
+                     "S": "American Robin"
+                  },
+                  "url" : {
+                    "S": "https://www.google.com/search?q=robin&tbm=isch&safe=strict&chips=q:robin,g_1:bird:lNNW5GNxKCc%3D&safe=strict&hl=en&ved=2ahUKEwjIsNCg7OXoAhXU-DgGHbFXCB4Q4lYoAXoECAEQFw&biw=1665&bih=854#imgrc=s6Kkb8IKG9vPHM"
+                  }
+               }
+            }
+         }
+      ]
+   }

@@ -1,0 +1,96 @@
+{
+    "Stacks": [
+        {
+            "StackId": "arn:aws:cloudformation:us-east-2:711742431666:stack/ImageNETCoreStack/569a5f50-7d73-11ea-8ba5-060a435a9e52", 
+            "DriftInformation": {
+                "StackDriftStatus": "NOT_CHECKED"
+            }, 
+            "Description": "This stack deploys the core network infrastructure and IAM resources to be used for a service hosted in Amazon ECS using AWS Fargate.", 
+            "Tags": [], 
+            "Outputs": [
+                {
+                    "Description": "REPLACE_ME_ACCOUNT_ID", 
+                    "ExportName": "ImageNETCoreStack:CurrentAccount", 
+                    "OutputKey": "CurrentAccount", 
+                    "OutputValue": "711742431666"
+                }, 
+                {
+                    "Description": "REPLACE_ME_SECURITY_GROUP_ID", 
+                    "ExportName": "ImageNETCoreStack:FargateContainerSecurityGroup", 
+                    "OutputKey": "FargateContainerSecurityGroup", 
+                    "OutputValue": "sg-0c840370a463b9305"
+                }, 
+                {
+                    "Description": "REPLACE_ME_PUBLIC_SUBNET_ONE", 
+                    "ExportName": "ImageNETCoreStack:PublicSubnetOne", 
+                    "OutputKey": "PublicSubnetOne", 
+                    "OutputValue": "subnet-05045601d017dfb22"
+                }, 
+                {
+                    "Description": "REPLACE_ME_ECS_TASK_ROLE_ARN", 
+                    "ExportName": "ImageNETCoreStack:ECSTaskRole", 
+                    "OutputKey": "ECSTaskRole", 
+                    "OutputValue": "arn:aws:iam::711742431666:role/ImageNETCoreStack-ECSTaskRole-15REZ9NAXW1P3"
+                }, 
+                {
+                    "Description": "REPLACE_ME_PRIVATE_SUBNET_TWO", 
+                    "ExportName": "ImageNETCoreStack:PrivateSubnetTwo", 
+                    "OutputKey": "PrivateSubnetTwo", 
+                    "OutputValue": "subnet-035f5b17216f1299c"
+                }, 
+                {
+                    "Description": "REPLACE_ME_REGION", 
+                    "ExportName": "ImageNETCoreStack:CurrentRegion", 
+                    "OutputKey": "CurrentRegion", 
+                    "OutputValue": "us-east-2"
+                }, 
+                {
+                    "Description": "REPLACE_ME_VPC_ID", 
+                    "ExportName": "ImageNETCoreStack:VPCId", 
+                    "OutputKey": "VPCId", 
+                    "OutputValue": "vpc-0ac7d5f39b171cab1"
+                }, 
+                {
+                    "Description": "REPLACE_ME_PUBLIC_SUBNET_TWO", 
+                    "ExportName": "ImageNETCoreStack:PublicSubnetTwo", 
+                    "OutputKey": "PublicSubnetTwo", 
+                    "OutputValue": "subnet-0c3b935421e0e6c7f"
+                }, 
+                {
+                    "Description": "REPLACE_ME_CODEBUILD_ROLE_ARN", 
+                    "ExportName": "ImageNETCoreStack:ImageNETServiceCodeBuildServiceRole", 
+                    "OutputKey": "CodeBuildRole", 
+                    "OutputValue": "arn:aws:iam::711742431666:role/ImageNETServiceCodeBuildServiceRole"
+                }, 
+                {
+                    "Description": "REPLACE_ME_CODEPIPELINE_ROLE_ARN", 
+                    "ExportName": "ImageNETCoreStack:ImageNETServiceCodePipelineServiceRole", 
+                    "OutputKey": "CodePipelineRole", 
+                    "OutputValue": "arn:aws:iam::711742431666:role/ImageNETServiceCodePipelineServiceRole"
+                }, 
+                {
+                    "Description": "REPLACE_ME_ECS_SERVICE_ROLE_ARN", 
+                    "ExportName": "ImageNETCoreStack:EcsServiceRole", 
+                    "OutputKey": "EcsServiceRole", 
+                    "OutputValue": "arn:aws:iam::711742431666:role/ImageNETCoreStack-EcsServiceRole-W63LGPK04EYT"
+                }, 
+                {
+                    "Description": "REPLACE_ME_PRIVATE_SUBNET_ONE", 
+                    "ExportName": "ImageNETCoreStack:PrivateSubnetOne", 
+                    "OutputKey": "PrivateSubnetOne", 
+                    "OutputValue": "subnet-0f89a0f7b4f6b9bbb"
+                }
+            ], 
+            "EnableTerminationProtection": false, 
+            "CreationTime": "2020-04-13T10:48:25.974Z", 
+            "Capabilities": [
+                "CAPABILITY_NAMED_IAM"
+            ], 
+            "StackName": "ImageNETCoreStack", 
+            "NotificationARNs": [], 
+            "StackStatus": "CREATE_COMPLETE", 
+            "DisableRollback": false, 
+            "RollbackConfiguration": {}
+        }
+    ]
+}

@@ -1,0 +1,69 @@
+{
+  "TableName": "ImageNETTable",
+  "ProvisionedThroughput": {
+    "ReadCapacityUnits": 5,
+    "WriteCapacityUnits": 5
+  },
+  "AttributeDefinitions": [
+    {
+      "AttributeName": "wnid",
+      "AttributeType": "S"
+    },
+    {
+      "AttributeName": "tags",
+      "AttributeType": "S"
+    },
+    {
+      "AttributeName": "url",
+      "AttributeType": "S"
+    }
+  ],
+  "KeySchema": [
+    {
+      "AttributeName": "wnid",
+      "KeyType": "HASH"
+    }
+  ],
+  "GlobalSecondaryIndexes": [
+    {
+      "IndexName": "tagIndex",
+      "KeySchema": [
+        {
+          "AttributeName": "tags",
+          "KeyType": "HASH"
+        },
+        {
+          "AttributeName": "wnid",
+          "KeyType": "RANGE"
+        }
+      ],
+      "Projection": {
+        "ProjectionType": "ALL"
+      },
+      "ProvisionedThroughput": {
+        "ReadCapacityUnits": 5,
+        "WriteCapacityUnits": 5
+      }
+    },
+    {
+      "IndexName": "urlIndex",
+      "KeySchema": [
+        {
+          "AttributeName": "url",
+          "KeyType": "HASH"
+        },
+        {
+          "AttributeName": "wnid",
+          "KeyType": "RANGE"
+        }
+      ],
+      "Projection": {
+        "ProjectionType": "ALL"
+      },
+      "ProvisionedThroughput": {
+        "ReadCapacityUnits": 5,
+        "WriteCapacityUnits": 5
+      }
+    }
+  ]
+}

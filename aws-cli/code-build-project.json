@@ -1,0 +1,27 @@
+{
+  "name": "ImageNETServiceCodeBuildProject",
+  "artifacts": {
+    "type": "no_artifacts"
+  },
+  "environment": {
+    "computeType": "BUILD_GENERAL1_SMALL",
+    "image": "aws/codebuild/python:3.5.2",
+    "privilegedMode": true,
+    "environmentVariables": [
+      {
+        "name": "AWS_ACCOUNT_ID",
+        "value": "711742431666"
+      },
+      {
+        "name": "AWS_DEFAULT_REGION",
+        "value": "us-east-2"
+      }
+    ],
+    "type": "LINUX_CONTAINER"
+  },
+  "serviceRole": "arn:aws:iam::711742431666:role/ImageNETServiceCodeBuildServiceRole",
+  "source": {
+    "type": "CODECOMMIT",
+    "location": "https://git-codecommit.us-east-2.amazonaws.com/v1/repos/ImageNETService-Repository"
+  }
+}
