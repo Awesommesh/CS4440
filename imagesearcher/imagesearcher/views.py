@@ -1,25 +1,19 @@
-import nltk 
+import re
+import nltk
 import requests
+from django.shortcuts import render
 from nltk.corpus import wordnet
-import re 
 
 wnid = []
-
 local_wnid = []
 children_wnid = []
 
-
-def get_wnid(query):
-     get_local_wnid(query)
-     for id in local_wnid: 
-         get_children_wnid(id)
-     wnid = local_wnid + children_wnid
-     print (wnid)
-
+def button(request): 
+    return render(request, 'search.html')
 
 def get_local_wnid(query):
     #human readable query -> wnid
-    synset = open("words.txt","r", 1) #searching from words.txt
+    synset = open("staticfiles\words.txt","r", 1) #searching from words.txt
     synset.seek(0)
     for line in synset:
         if (query.lower() in line.lower()):
@@ -39,15 +33,12 @@ def get_children_wnid(wnid):
         children_wnid.append(id[1:10])
     del children_wnid[-1] #again, weird '' at end of list
 
-
-def main():
-     query = input("Enter your search query: ")
-     get_wnid(query)
-
-
-if __name__ == "__main__":
-    main()
-
-
-
-
+def output(request):
+    #query = query
+    query = "fruit"
+    get_local_wnid(query)
+    for id in local_wnid[1:10]:
+        get_children_wnid(id)
+    wnid = local_wnid + children_wnid
+    print (wnid)
+    return render(request, 'search.html', {'data': wnid})
