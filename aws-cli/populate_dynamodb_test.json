@@ -6,7 +6,7 @@
                   "wnid" : {
                      "S": "4e53920c-505a-4a90-a694-b9300791f0ae"
                   },
-                  "tag" : {
+                  "tags" : {
                      "S": "American Robin"
                   },
                   "url" : {

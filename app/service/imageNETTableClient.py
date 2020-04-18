@@ -81,6 +81,7 @@ def queryImageNET(queryParam):
     return queryImageNETItems(filter, value)
 
 # So we can test from the command line
+# So we can test from the command line
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('-f', '--filter')
@@ -91,8 +92,8 @@ if __name__ == "__main__":
     value = args.value
 
     if args.filter and args.value:
-        print ('filter is ',args.filter)
-        print ('value is ',args.value)
+        print ('filter is ', args.filter)
+        print ('value is ', args.value)
 
         print ("Getting filtered values")
         items = queryImageNETItems(args.filter, args.value)
