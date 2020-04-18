@@ -40,14 +40,14 @@ def getAllImages():
 
     logging.info(response["Items"])
 
-    # loop through the returned mysfits and add their attributes to a new dict
+    # loop through the returned images and add their attributes to a new dict
     # that matches the JSON response structure expected by the frontend.
     imageNETList = getImageNETJson(response["Items"])
 
     return json.dumps(imageNETList)
 
 def queryImageNETItems(filter, value):
-    # Use the DynamoDB API Query to retrieve mysfits from the table that are
+    # Use the DynamoDB API Query to retrieve images from the table that are
     # equal to the selected filter values.
     response = client.query(
         TableName='ImageNETTable',
@@ -64,7 +64,7 @@ def queryImageNETItems(filter, value):
         }
     )
 
-    # loop through the returned mysfits and add their attributes to a new dict
+    # loop through the returned images and add their attributes to a new dict
     # that matches the JSON response structure expected by the frontend.
     imageNETList = getImageNETJson(response["Items"])
 
@@ -91,13 +91,13 @@ if __name__ == "__main__":
     value = args.value
 
     if args.filter and args.value:
-        print 'filter is '+args.filter
-        print 'value is '+args.value
+        print ('filter is ',args.filter)
+        print ('value is ',args.value)
 
-        print "Getting filtered values"
+        print ("Getting filtered values")
         items = queryImageNETItems(args.filter, args.value)
     else:
-        print "Getting all values"
+        print ("Getting all values")
         items = getAllImages()
 
-    print items
+    print (items)
