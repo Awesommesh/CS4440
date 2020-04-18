@@ -18,8 +18,9 @@ def getImageNETJson(items):
         image = {}
 
         image["wnid"] = item["wnid"]["S"]
-        image["tags"] = item["tags"]["S"]
-        image["url"] = item["url"]["S"]
+        image["class"] = item["class"]["S"]
+        image["link"] = item["link"]["S"]
+        image["index"] = item["index"]["N"]
 
         ImageNETList["images"].append(image)
 

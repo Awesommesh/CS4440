@@ -28,6 +28,6 @@ def model_predict(img_path):
 	return preds
 
 if __name__ == '__main__':
-	path  = 'gorilla.jpg'
+	path = 'gorilla.jpg'
 
 	model_predict(path )
