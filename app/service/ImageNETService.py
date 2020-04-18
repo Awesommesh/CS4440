@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, json, Response, request
 from flask_cors import CORS
 import imageNETTableClient
+import resnet as res
 # A very basic API created using Flask that has two possible routes for requests.
 
 app = Flask(__name__)
@@ -11,6 +12,12 @@ CORS(app)
 @app.route("/")
 def healthCheckResponse():
     return jsonify({"message" : "Nothing here, used for health check. Try /imagenet instead."})
+
+@app.route("/resnet")
+def resnet():
+    img_path = request.args.get('img_path')
+    res.model_predict(img_path)
+    return jsonify({"message" : "Testing Resnet."})
 
 @app.route("/imagenet")
 def getImageNET():
