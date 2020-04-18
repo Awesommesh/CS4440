@@ -4,8 +4,13 @@ from keras.applications.imagenet_utils import preprocess_input, decode_predictio
 from keras.models import load_model
 from keras.preprocessing import image
 from keras.applications.resnet50 import ResNet50
+import json
 graph = tf.get_default_graph()
 
+def json_reader():
+	f = open('index_var.json',)
+	data = json.load(f)
+	print(data['index'])
 
 def model_predict(img_path):
 
@@ -30,5 +35,5 @@ def model_predict(img_path):
 
 if __name__ == '__main__':
 	path = 'gorilla.jpg'
-
-	model_predict(path )
+	json_reader()
+	model_predict(path)
