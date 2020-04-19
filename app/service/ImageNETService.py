@@ -2,6 +2,7 @@ from flask import Flask, jsonify, json, Response, request
 from flask_cors import CORS
 import imageNETTableClient
 import resnet as res
+import wnid_searcher as ws
 # A very basic API created using Flask that has two possible routes for requests.
 
 app = Flask(__name__)
@@ -18,6 +19,14 @@ def resnet():
     img_path = request.args.get('img_path')
     res.model_predict(img_path)
     return jsonify({"message" : "Testing Resnet."})
+
+@app.route("/stemming")
+def get_wnids():
+    query = request.args.get('query_input')
+    if query != '':
+        results = ws.get_wnid(query)
+        return results
+    return jsonify({"message" : "Testing Stemming."})
 
 @app.route("/imagenet")
 def getImageNET():
