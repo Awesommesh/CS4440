@@ -4,3 +4,5 @@ boto3==1.7.16
 werkzeug<1.0
 requests==2.21.0
 nltk==3.4
+tensorflow==1.4
+keras==2.3.1
