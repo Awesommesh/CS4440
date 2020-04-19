@@ -3,14 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>CS4440 ImageNET Image Search Project</title>
-    <link rel= "stylesheet" type= "text/css" href= "static/styles/search.css">
+    <link rel= "stylesheet" type= "text/css" href= "./search.css">
 </head>
 <body>
 <h1>IN DEVELOPMENT</h1>
+<label for="myfile">Select a file:</label>
+<input type="file" id="myfile" name="myfile">hp } ?>
+</ul>
 </body>
 <form class="search-wrapper cf" method="POST">
     <input type="text" placeholder="Search here..." required="" name="queryinput">
     <button type="submit">Search</button><hr>
+</form>
+<form action="upload.php" method="post" enctype="multipart/form-data">
+    Select image to upload:
+    <input type="file" name="fileToUpload" id="fileToUpload">
+    <input type="submit" value="Upload Image" name="submit">
 </form>
 <script>
     var imagenetApiEndpoint = "http://imagenet-nlb-b4fcd380459e9b61.elb.us-east-2.amazonaws.com"
