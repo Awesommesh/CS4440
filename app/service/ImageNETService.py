@@ -4,7 +4,10 @@ import imageNETTableClient
 import wnid_searcher as ws
 # A very basic API created using Flask that has two possible routes for requests.
 
-app = Flask(__name__)
+app = Flask(__name__,
+            static_url_path='', 
+            static_folder='web/static',
+            template_folder='web/templates')
 CORS(app)
 
 # The service basepath has a short response just to ensure that healthchecks
