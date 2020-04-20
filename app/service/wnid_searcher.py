@@ -1,7 +1,6 @@
 import nltk 
 import requests
 from nltk.corpus import wordnet
-import re 
 
 wnid = []
 
@@ -44,7 +43,7 @@ def get_children_wnid(wnid):
 
 def main():
      query = input("Enter your search query: ")
-     get_wnid(query)
+     print(get_wnid(query))
 
 
 if __name__ == "__main__":

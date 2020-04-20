@@ -24,6 +24,7 @@ def resnet():
 def get_wnids():
     query = request.args.get('query_input')
     if query != '':
+        print(query)
         results = ws.get_wnid(query)
         return results
     return jsonify({"message" : "Testing Stemming."})
