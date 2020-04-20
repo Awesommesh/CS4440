@@ -7,7 +7,7 @@ import argparse
 # create a DynamoDB client using boto3. The boto3 library will automatically
 # use the credentials associated with our ECS task role to communicate with
 # DynamoDB, so no credentials need to be stored/managed at all by our code!
-client = boto3.client('dynamodb')
+client = boto3.client('dynamodb', region_name='us-east-2')
 
 def getImageNETJson(items):
     # loop through the returned image and add their attributes to a new dict
