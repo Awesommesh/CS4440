@@ -23,9 +23,9 @@ def resnet():
 @app.route("/stemming")
 def get_wnids():
     query = request.args.get('query_input')
-    if query != '':
-        print(query)
+    if query:
         results = ws.get_wnid(query)
+        print(results)
         return results
     return jsonify({"message" : "Testing Stemming."})
 

@@ -3,10 +3,11 @@ flask-cors
 boto3
 werkzeug
 nltk==3.4.5
-tensorflow==1.4
+tensorflow==1.14
 numpy==1.15.4
 Keras==2.0.0
 scipy==1.2.3
 Keras-Applications==1.0.8
 Keras-Preprocessing==1.1.0
 requests==2.23.0
+Pillow==7.1.1
