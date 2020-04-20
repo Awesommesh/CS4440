@@ -1,6 +1,7 @@
 import nltk 
 import requests
 from nltk.corpus import wordnet
+import re
 
 wnid = []
 
