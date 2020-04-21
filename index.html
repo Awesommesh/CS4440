@@ -8,15 +8,15 @@
     <link rel= "stylesheet" type= "text/css" href= "./search.css">
 </head>
 <body>
-<h1>CS4440 ImageNET Image Search Project</h1>
-<label for="myfile">Select a file:</label>
-<input type="file" id="myfile" name="myfile">
+<!-- <h1>CS4440 ImageNET Image Search Project</h1> -->
+<!-- <label for="myfile">Select a file:</label>
+<input type="file" id="myfile" name="myfile"> -->
 </body>
-<form action="upload.php" method="post" enctype="multipart/form-data">
+<!-- <form action="upload.php" method="post" enctype="multipart/form-data">
     Select image to upload:
     <input type="file" name="fileToUpload" id="fileToUpload">
     <input type="submit" value="Upload Image" name="submit">
-</form>
+</form> -->
 <form class="search-wrapper cf" method="POST" id="textform">
     <input type="text" placeholder="Search here..." required="" name="query_input" id="query_input">
     <button type="submit" id="searchButton">Search</button><hr>
@@ -26,6 +26,7 @@
 <script>
     var imagenetApiEndpoint = "http://imagenet-nlb-b4fcd380459e9b61.elb.us-east-2.amazonaws.com";
     var wnids = []
+    var returnedImage = '';
     $("#textform").on("submit", function(e) { 
         e.preventDefault(); 
         $.ajax({
@@ -33,6 +34,8 @@
             type: 'GET',
             success: function(data) {
                 console.log($('input[name="query_input"]').val());
+                returnedImage = '';
+                returnedImage = '<div>';
                 wnids = data.split("\n");
                 wnidToImage()
             }
@@ -40,7 +43,7 @@
         })
     });
 
-    var imageUrlRoot = 'https://imagenetbucket.s3.us-east-2.amazonaws.com/images/'
+    var imageUrlRoot = 'https://imagenetbucket.s3.us-east-2.amazonaws.com/images/';
     function wnidToImage() {
         if (wnids.length) {
             $.ajax({
@@ -48,17 +51,16 @@
                 type: 'GET',
                 success: function(data) {
                     // console.log(wnids[0]);
-                    var returnedImage = '<div>';
-                    // console.log(data.images[0].link);
-                    $.each(data.images, function(index, image) {
-                        returnedImage += '<img id= "gallery" src="' + image.link + '" />';
+                    console.log(data.images);
+                    $.each(data.images, function(index, image) {       
+                        returnedImage += '<img id= "gallery" src="' + image.link + '" />';               
                     })
                     returnedImage += '</div>';
-                    $('#gallery').html(returnedImage)
                     wnids.shift();
                     wnidToImage(); 
                 }
             })
+            $('#gallery').html(returnedImage)
         }
     };
 
