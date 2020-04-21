@@ -14,25 +14,24 @@ def json_reader():
 
 def model_predict(img_path):
 
-	model = ResNet50(weights='imagenet')
+	model = ResNet50(weights='resnet50_weights_tf_dim_ordering_tf_kernels.h5')
 	#testing
-
+	'''
 	original = image.load_img(img_path, target_size=(224, 224))
 
 	numpy_image = image.img_to_array(original)
 	
 	image_batch = np.expand_dims(numpy_image, axis=0)
 
-	processed_image = preprocess_input(image_batch, mode='caffe')
-
+	processed_image = preprocess_input(image_batch)
 
 	with graph.as_default():
 		preds = model.predict(processed_image)
 
 	print('Predicted:', decode_predictions(preds, top=1)[0])
 
-	return preds
-
+	return str(decode_predictions(preds, top=1)[0])
+	'''
 if __name__ == '__main__':
 	path = 'gorilla.jpg'
 	json_reader()
