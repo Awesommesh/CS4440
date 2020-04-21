@@ -13,11 +13,14 @@ def toString(list):
     return string
 
 def get_wnid(query):
-     get_local_wnid(query)
-     for id in local_wnid[0]: 
-         get_children_wnid(id)
-     wnid = local_wnid + children_wnid[0]
-     return toString(wnid)
+    get_local_wnid(query)
+    for id in local_wnid[0]: 
+        get_children_wnid(id)
+    if (len(children_wnid) > 0):
+        wnid = local_wnid + children_wnid[0]
+    else:
+        wnid = local_wnid
+    return toString(wnid)
 
 def get_local_wnid(query):
     #human readable query -> wnid
