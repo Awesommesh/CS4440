@@ -106,3 +106,10 @@ text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);
     border: 0;
     padding: 0;
 }    
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 5vw);
+    grid-gap: 15px;
+}
