@@ -15,8 +15,8 @@ def json_reader():
 def model_predict(img_path):
 
 	model = ResNet50(weights='imagenet')
-	#testing
-	'''
+	#testingclear
+
 	original = image.load_img(img_path, target_size=(224, 224))
 
 	numpy_image = image.img_to_array(original)
@@ -31,7 +31,7 @@ def model_predict(img_path):
 	print('Predicted:', decode_predictions(preds, top=1)[0])
 
 	return str(decode_predictions(preds, top=1)[0])
-	'''
+
 if __name__ == '__main__':
 	path = 'gorilla.jpg'
 	json_reader()
