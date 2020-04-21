@@ -2,6 +2,7 @@ import nltk
 import requests
 from nltk.corpus import wordnet
 import re
+import random
 
 wnid = []
 
@@ -14,8 +15,8 @@ def toString(list):
 
 def get_wnid(query):
      get_local_wnid(query)
-     for id in local_wnid[1:10]: 
-         get_children_wnid(id)
+     for id in local_wnid: 
+         children = get_children_wnid(id)
      wnid = local_wnid + children_wnid
      return wnid
 
@@ -23,8 +24,10 @@ def get_local_wnid(query):
     #human readable query -> wnid
     synset = open("words.txt","r", 1) #searching from words.txt
     synset.seek(0)
+    string_length = len(query) + 1
+    query_revised = query.ljust(string_length)
     for line in synset:
-        if (query.lower() in line.lower()):
+        if (query_revised.lower() in line.lower()):
             id = line[0:9]
             local_wnid.append(id)
     synset.close()
