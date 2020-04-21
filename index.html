@@ -37,7 +37,9 @@
                 wnids = data.split("\n");
                 wnidToImage()
             }
+            
         })
+        console.log('and here works');
     });
 
     var imageUrlRoot = 'https://imagenetbucket.s3.us-east-2.amazonaws.com/images/'
@@ -47,8 +49,9 @@
                 url: imagenetApiEndpoint + '/imagenet?filter=wnid&value=' + wnids[0],
                 type: 'GET',
                 success: function(data) {
-                    console.log(data.Item.link); //Currently empty, what is this supposed to be?
-                    // $('.div_images').html('<img src="data:image/jpeg;base64,' + data.Item.link + '" />'); //depends on above 
+                    console.log(wnids[0]);
+                    // console.log(data.link); //Currently empty, what is this supposed to be?
+                    // $('.div_images').html('<img src="data:image/jpeg;base64,' + data.link + '" />'); //depends on above 
                     wnids.shift();
                     wnidToImage();
                 }
