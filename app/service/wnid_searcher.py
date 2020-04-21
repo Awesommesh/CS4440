@@ -57,8 +57,8 @@ def clean_wnid(wnid):
             for ele in wnid:
                 if ele in line[0:9]:
                     checker.add(ele)
-    return checker
     synset.close()
+    return checker
     
 
 def main():
