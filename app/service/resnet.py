@@ -31,7 +31,7 @@ def model_predict(img_path):
 
 	print('Predicted:', decode_predictions(preds, top=1)[0])
 
-	return preds
+	return str(decode_predictions(preds, top=1)[0])
 
 if __name__ == '__main__':
 	path = 'gorilla.jpg'

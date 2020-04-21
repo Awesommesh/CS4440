@@ -9,7 +9,7 @@ COPY ./service /ImageNETService
 WORKDIR /ImageNETService
 RUN echo Installing Python packages listed in requirements.txt
 RUN pip3 install -r ./requirements.txt
-RUN pip install -r ./requirements2.txt
+RUN pip install -r ./requirements.txt
 RUN echo Starting python and starting the Flask service...
 ENTRYPOINT ["python3"]
 CMD ["ImageNETService.py"]
