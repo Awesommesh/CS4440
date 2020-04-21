@@ -23,7 +23,7 @@ def model_predict(img_path):
 	
 	image_batch = np.expand_dims(numpy_image, axis=0)
 
-	processed_image = preprocess_input(image_batch, mode='caffe')
+	processed_image = preprocess_input(image_batch)
 
 
 	with graph.as_default():
