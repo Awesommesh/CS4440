@@ -9,7 +9,11 @@
  
 .cf{
     zoom:1;
-}    
+}  
+
+.header-wrapper{
+    font: bold 15px/40px 'lucida sans', 'trebuchet MS', 'Tahoma';
+}
 
  /* Form wrapper styling */
 .search-wrapper {
