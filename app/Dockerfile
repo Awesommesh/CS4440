@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 RUN echo Updating existing packages, installing and upgrading python and pip.
 RUN apt-get update -y
-RUN apt-get install -y python3.6 python3-pip python3-dev build-essential
+RUN apt-get install -y python3.6 python3-pip python-pip python3-dev build-essential
 RUN pip install --upgrade pip
 RUN echo Copying the ImageNET Flask service into a service directory.
 COPY ./service /ImageNETService
