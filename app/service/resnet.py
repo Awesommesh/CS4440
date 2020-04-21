@@ -14,7 +14,7 @@ def json_reader():
 
 def model_predict(img_path):
 
-	model = ResNet50(weights='imagenet')
+	model = ResNet50(weights='resnet50_weights_tf_dim_ordering_tf_kernels.h5')
 	#testing
 
 	original = image.load_img(img_path, target_size=(224, 224))
