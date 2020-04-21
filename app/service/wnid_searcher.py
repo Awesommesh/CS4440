@@ -14,10 +14,10 @@ def toString(list):
 
 def get_wnid(query):
      get_local_wnid(query)
-     for id in local_wnid[1:10]: 
+     for id in local_wnid[1:5]: 
          get_children_wnid(id)
      wnid = local_wnid + children_wnid
-     return toString(wnid)
+     return wnid
 
 def get_local_wnid(query):
     #human readable query -> wnid

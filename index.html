@@ -11,10 +11,12 @@
 <h1>IN DEVELOPMENT</h1>
 <label for="myfile">Select a file:</label>
 <input type="file" id="myfile" name="myfile">
+<div class="div_images">  
+</div>
 </body>
-<form class="search-wrapper cf" method="POST">
-    <input type="text" placeholder="Search here..." required="" name="queryinput">
-    <button type="submit">Search</button><hr>
+<form class="search-wrapper cf" method="POST" id="textform">
+    <input type="text" placeholder="Search here..." required="" name="query_input" id="query_input">
+    <button type="submit" id="searchButton">Search</button><hr>
 </form>
 <form action="upload.php" method="post" enctype="multipart/form-data">
     Select image to upload:
@@ -22,6 +24,33 @@
     <input type="submit" value="Upload Image" name="submit">
 </form>
 <script>
-    var imagenetApiEndpoint = "http://imagenet-nlb-b4fcd380459e9b61.elb.us-east-2.amazonaws.com"
+    var imagenetApiEndpoint = "http://imagenet-nlb-b4fcd380459e9b61.elb.us-east-2.amazonaws.com";
+    $("#textform").on("submit", function(e) { 
+        e.preventDefault(); 
+        console.log('here works');
+        $.ajax({
+            url: imagenetApiEndpoint + '/stemming?query_input=' + $('input[name="query_input"]').val(),
+            type: 'GET',
+            success: function(wnids) {
+                console.log($('input[name="query_input"]').val());
+                console.log(typeof(wnids));
+                $.each(wnids, function(index, value) {
+                    wnidToImage(value);
+                });
+            }
+        })
+    });
+
+    function wnidToImage(wnid) {
+        $.ajax({
+            url: imagenetApiEndpoint + '/imagenet?filter=wnid&value=' + wnid,
+            type: 'GET',
+            success: function(data) {
+                console.log(url);
+                $('.div_images').html('<img src="data:image/jpeg;base64,' + data + '" />');
+            }
+        })
+    };
+
 </script>
 </html>
