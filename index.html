@@ -25,31 +25,35 @@
 </form>
 <script>
     var imagenetApiEndpoint = "http://imagenet-nlb-b4fcd380459e9b61.elb.us-east-2.amazonaws.com";
+    var wnids = []
     $("#textform").on("submit", function(e) { 
         e.preventDefault(); 
         console.log('here works');
         $.ajax({
             url: imagenetApiEndpoint + '/stemming?query_input=' + $('input[name="query_input"]').val(),
             type: 'GET',
-            success: function(wnids) {
+            success: function(data) {
                 console.log($('input[name="query_input"]').val());
-                console.log(typeof(wnids));
-                $.each(wnids, function(index, value) {
-                    wnidToImage(value);
-                });
+                wnids = data.split("\n");
+                wnidToImage()
             }
         })
     });
 
-    function wnidToImage(wnid) {
-        $.ajax({
-            url: imagenetApiEndpoint + '/imagenet?filter=wnid&value=' + wnid,
-            type: 'GET',
-            success: function(data) {
-                console.log(url);
-                $('.div_images').html('<img src="data:image/jpeg;base64,' + data + '" />');
-            }
-        })
+    var imageUrlRoot = 'https://imagenetbucket.s3.us-east-2.amazonaws.com/images/'
+    function wnidToImage() {
+        if (wnids.length) {
+            $.ajax({
+                url: imagenetApiEndpoint + '/imagenet?filter=wnid&value=' + wnids[0],
+                type: 'GET',
+                success: function(data) {
+                    console.log(data.object); //Currently empty, what is this supposed to be?
+                    // $('.div_images').html('<img src="data:image/jpeg;base64,' + data.Item.link + '" />'); //depends on above 
+                    wnids.shift();
+                    wnidToImage();
+                }
+            })
+        }
     };
 
 </script>
