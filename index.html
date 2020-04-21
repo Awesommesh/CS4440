@@ -47,7 +47,7 @@
                 url: imagenetApiEndpoint + '/imagenet?filter=wnid&value=' + wnids[0],
                 type: 'GET',
                 success: function(data) {
-                    console.log(data.object); //Currently empty, what is this supposed to be?
+                    console.log(data.Item.link); //Currently empty, what is this supposed to be?
                     // $('.div_images').html('<img src="data:image/jpeg;base64,' + data.Item.link + '" />'); //depends on above 
                     wnids.shift();
                     wnidToImage();
