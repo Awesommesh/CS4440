@@ -29,7 +29,6 @@
     $("#textform").on("submit", function(e) { 
         e.preventDefault(); 
         console.log('here works');
-        console.log($(imagenetApiEndpoint + '/stemming?query_input=' + $('input[name="query_input"]').val()));
         $.ajax({
             url: imagenetApiEndpoint + '/stemming?query_input=' + $('input[name="query_input"]').val(),
             type: 'GET',
