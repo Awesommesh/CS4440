@@ -67,7 +67,7 @@
 
     var imageUrlRoot = 'https://imagenetbucket.s3.us-east-2.amazonaws.com/images/';
     function wnidToImage() {
-        if (wnids.length) {
+        if (wnids.length > 0) {
             $.ajax({
                 url: imagenetApiEndpoint + '/imagenet?filter=wnid&value=' + wnids[0],
                 type: 'GET',

@@ -105,8 +105,8 @@ function sendFile(e) {
                     Key: 'images/' + metadata.index.toString() + '.jpg',
                     ACL: 'authenticated-read',
                     // This must match with your ajax contentType parameter
-                    ContentType: 'binary/octet-stream'
-                
+                    ContentType: 'binary/octet-stream',
+                    Metadata: metadata
                     /* then add all the rest of your parameters to AWS puttObect here */
                 });
                 console.log(uploadPreSignedUrl);
