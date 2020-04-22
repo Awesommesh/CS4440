@@ -30,7 +30,7 @@ def get_wnids():
 
 @app.route("/metadata")
 def metadata():
-    classname = lower(request.args.get('query_class'))
+    classname = request.args.get('query_class').lower()
     imageMap = {}
     if classname:
         with open('class-wnids.json', 'r') as f:
@@ -39,7 +39,7 @@ def metadata():
             if len(indexes) == 0:
                 wnid = ""
             else:
-                wnid = classes[indexes[0]]['classname']
+                wnid = classes[indexes[0]][classname]
                 with open('index_var.json', 'r') as fil:
                     index = int(json.load(fil)['index'])
                     imageMap = {
