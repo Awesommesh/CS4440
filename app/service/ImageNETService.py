@@ -28,6 +28,29 @@ def get_wnids():
         return results
     return jsonify({"message" : "Testing Stemming."})
 
+@app.route("/metadata")
+def metadata():
+    classname = lower(request.args.get('query_class'))
+    imageMap = {}
+    if classname:
+        with open('class-wnids.json', 'r') as f:
+            classes = json.load(f)
+            indexes = [i for i,d in enumerate(classes) if classname in d]
+            if len(indexes) == 0:
+                wnid = ""
+            else:
+                wnid = classes[indexes[0]]['classname']
+                with open('index_var.json', 'r') as fil:
+                    index = int(json.load(fil)['index'])
+                    imageMap = {
+                        'index': str(index),
+                        'class': classname,
+                        'wnid': wnid
+                    }
+                with open('index_var.json', 'w') as fil:
+                    json.dump({'index': index+1}, fil)
+    return jsonify(imageMap)
+
 @app.route("/imagenet")
 def getImageNET():
     filterCategory = request.args.get('filter')
