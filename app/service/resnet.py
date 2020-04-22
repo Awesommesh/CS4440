@@ -13,14 +13,12 @@ def json_reader():
 	print(data['index'])
 
 def model_predict(img_path):
-
 	model = ResNet50(weights='imagenet')
-	#testing
-	'''
+	#testingclear
 	original = image.load_img(img_path, target_size=(224, 224))
 
 	numpy_image = image.img_to_array(original)
-	
+
 	image_batch = np.expand_dims(numpy_image, axis=0)
 
 	processed_image = preprocess_input(image_batch)

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+echo "Installing required dependencies..."
+pip install -r ./requirements.txt
+FILEPATH=${1?Error: no file given}
+python3 resnet.py $FILEPATH
