@@ -48,7 +48,7 @@
     var imagenetApiEndpoint = "http://imagenet-nlb-b4fcd380459e9b61.elb.us-east-2.amazonaws.com";
     var wnids = []
     var returnedImage = '';
-    $("#textform").on("submit", function(e) { 
+    $("#textform").on("submit", function(e) {
         e.preventDefault();
         $.ajax({
             url: imagenetApiEndpoint + '/stemming?query_input=' + $('input[name="query_input"]').val(),
@@ -59,9 +59,9 @@
                 returnedImage = '';
                 returnedImage = '<div>';
                 wnids = data.split("\n");
-                wnidToImage() 
+                wnidToImage()
             }
-            
+
         })
     });
 
@@ -74,15 +74,17 @@
                 success: function(data) {
                     // console.log(wnids[0]);
                     console.log(data.images);
-                    $.each(data.images, function(index, image) {       
-                        returnedImage += '<img id= "gallery" src="' + image.link + '" />';               
-                    })
-                    returnedImage += '</div>';
+                    for (var i = 0; i < data.images.length; i++) {
+	                    returnedImage += '<img id= "gallery" src="' + data.images[i].link + '" />';
+                    }
                     wnids.shift();
-                    wnidToImage(); 
+                    if (wnids.length == 0) {
+	                    returnedImage += '</div>';
+	                    $('#gallery').html(returnedImage)
+                    }
+                    wnidToImage();
                 }
-            })
-            $('#gallery').html(returnedImage)
+            });
         }
     };
 
