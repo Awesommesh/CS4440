@@ -4,32 +4,36 @@ from nltk.corpus import wordnet
 import re
 import random
 
-wnid = []
-
-local_wnid = []
-children_wnid = []
+wnid = set()
+local_wnid = set()
+children_wnid = set()
 
 def toString(list):
     string = "\n".join(list)
     return string
 
 def get_wnid(query):
+     local_wnid.clear()
+     children_wnid.clear()
      get_local_wnid(query)
      for id in local_wnid: 
          get_children_wnid(id)
-     wnid = local_wnid + children_wnid
-     return toString(wnid)
+     wnid = local_wnid | children_wnid
+     wnid = clean_wnid(wnid)
+     return toString(list(filter(None,(list(wnid)))))
 
 def get_local_wnid(query):
     #human readable query -> wnid
-    synset = open("words.txt","r", 1) #searching from words.txt
+    synset = open('words.txt',"r", 1)
     synset.seek(0)
-    string_length = len(query) + 1
+    string_length = len(query) + 0
     query_revised = query.ljust(string_length)
     for line in synset:
+        # pattern = r"[\t]"+ re.escape(query_revised) + r"[\n]" 
+        # if re.search(pattern, line, re.IGNORECASE):
         if (query_revised.lower() in line.lower()):
             id = line[0:9]
-            local_wnid.append(id)
+            local_wnid.add(id)
     synset.close()
 
 def get_children_wnid(wnid):
@@ -38,12 +42,24 @@ def get_children_wnid(wnid):
     r = requests.get('http://www.image-net.org/api/text/wordnet.structure.hyponym', params = payload)
     page_contents = r.text #string
     page_contents_to_list = re.split(r'[\n\r]\s*', page_contents)
-    #append to list
-    children_wnid.append(page_contents_to_list[0]) #html page formatted weird
+    #add to set
+    children_wnid.add(page_contents_to_list[0]) #html page formatted weird
     for id in page_contents_to_list[1:]:
-        children_wnid.append(id[1:10])
-    del children_wnid[-1] #again, weird '' at end of list
+        children_wnid.add(id[1:10])
+    #del children_wnid[-1] #again, weird '' at end of list
 
+def clean_wnid(wnid):
+    checker = set()
+    synset = open("wnid_classes.txt","r", 1)
+    synset.seek(0)
+    if len(wnid):
+        for line in synset:
+            for ele in wnid:
+                if ele in line[0:9]:
+                    checker.add(ele)
+    synset.close()
+    return checker
+    
 
 def main():
      query = input("Enter your search query: ")

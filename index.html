@@ -2,57 +2,87 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine&effect=fire-animation">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+        <script src="https://sdk.amazonaws.com/js/aws-sdk-2.660.0.min.js"></script>
+    <style>
+        .tangerine {
+            font-family: "Tangerine", serif;
+        }
+    </style>
     <title>CS4440 ImageNET Image Search Project</title>
     <link rel= "stylesheet" type= "text/css" href= "./search.css">
 </head>
 <body>
-<h1>IN DEVELOPMENT</h1>
-<label for="myfile">Select a file:</label>
-<input type="file" id="myfile" name="myfile">
-<div class="div_images">  
-</div>
+    <div class="w3-container w3-khaki w3-center tangerine">
+        <p class="w3-xxxlarge"><i class="fa fa-search-plus"></i>PictoSearch</p>
+    </div>
 </body>
-<form class="search-wrapper cf" method="POST" id="textform">
-    <input type="text" placeholder="Search here..." required="" name="query_input" id="query_input">
-    <button type="submit" id="searchButton">Search</button><hr>
+<div class="header-wrapper">
+    <p class="w3-center">Search by Text</p>
+    <form class="search-wrapper cf" method="POST" id="textform">
+        <input type="text" placeholder="Search here..." required="" name="query_input" id="query_input">
+        <button type="submit" id="searchButton">Search</button><hr>
+    </form>
+</div>
+
+<form id="theForm" method="POST" enctype="multipart/form-data" class="imageSearcher">
+    <p class="w3-center w3-large bold">OR</p>
+    <p class="w3-center header-wrapper">Search by Image</p>
+    Select an Image to Upload
+    <input id="theFile" name="file" type="file"/><br><br>
+    <label for="uploadClass"> Input ImageNET class name: </label>
+    <input type="text" name="uploadClass" id="uploadClass"><br><br>
+    <button id="theButton" type="submit">Search by Image</button>
 </form>
-<form action="upload.php" method="post" enctype="multipart/form-data">
-    Select image to upload:
-    <input type="file" name="fileToUpload" id="fileToUpload">
-    <input type="submit" value="Upload Image" name="submit">
-</form>
+<script src="upload.js"></script>
+
+<br><br>
+<p class="w3-large" id="resText" hidden=true>Search Results</p>
+<div id="gallery">
+</div>
 <script>
     var imagenetApiEndpoint = "http://imagenet-nlb-b4fcd380459e9b61.elb.us-east-2.amazonaws.com";
     var wnids = []
+    var returnedImage = '';
     $("#textform").on("submit", function(e) { 
-        e.preventDefault(); 
-        console.log('here works');
+        e.preventDefault();
         $.ajax({
             url: imagenetApiEndpoint + '/stemming?query_input=' + $('input[name="query_input"]').val(),
             type: 'GET',
             success: function(data) {
+                document.getElementById("resText").hidden = false;
                 console.log($('input[name="query_input"]').val());
+                returnedImage = '';
+                returnedImage = '<div>';
                 wnids = data.split("\n");
-                wnidToImage()
+                wnidToImage() 
             }
+            
         })
     });
 
-    var imageUrlRoot = 'https://imagenetbucket.s3.us-east-2.amazonaws.com/images/'
+    var imageUrlRoot = 'https://imagenetbucket.s3.us-east-2.amazonaws.com/images/';
     function wnidToImage() {
         if (wnids.length) {
             $.ajax({
                 url: imagenetApiEndpoint + '/imagenet?filter=wnid&value=' + wnids[0],
                 type: 'GET',
                 success: function(data) {
-                    console.log(data.Item.link); //Currently empty, what is this supposed to be?
-                    // $('.div_images').html('<img src="data:image/jpeg;base64,' + data.Item.link + '" />'); //depends on above 
+                    // console.log(wnids[0]);
+                    console.log(data.images);
+                    $.each(data.images, function(index, image) {       
+                        returnedImage += '<img id= "gallery" src="' + image.link + '" />';               
+                    })
+                    returnedImage += '</div>';
                     wnids.shift();
-                    wnidToImage();
+                    wnidToImage(); 
                 }
             })
+            $('#gallery').html(returnedImage)
         }
     };
 
