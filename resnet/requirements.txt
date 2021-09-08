@@ -5,7 +5,7 @@ werkzeug
 nltk==3.4.5
 scipy==1.2.3
 requests==2.23.0
-Pillow==6.2.2
+Pillow==8.3.2
 Keras-Applications==1.0.8
 Keras-Preprocessing==1.1.0
 tensorflow==1.14
